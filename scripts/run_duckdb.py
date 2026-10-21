@@ -10,22 +10,17 @@
 
 from __future__ import annotations
 
-import os
 import sys
 import time
 from pathlib import Path
-
-# DuckDB тянет OpenBLAS, который на старте резервирует буфер под каждый поток.
-# Из-за ограничений памяти переменная должна быть выставлена ДО
-# импорта duckdb, иначе импорт падает с "Memory allocation still failed".
-os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
 import duckdb  # noqa: E402
 
-from common.config import Settings, load_settings  # noqa: E402
+from common.config import load_settings  # noqa: E402
+from common.duckdb import connect, render  # noqa: E402
 from common.reporting import Transcript  # noqa: E402
 from common.s3 import make_s3_client  # noqa: E402
 from common.variant import VARIANT, filter_predicate_sql  # noqa: E402
@@ -39,40 +34,6 @@ def human(n: float) -> str:
             return f"{n:.1f} {unit}" if unit != "Б" else f"{int(n)} Б"
         n /= 1024
     return f"{n:.1f} ТБ"
-
-
-def connect(settings: Settings) -> duckdb.DuckDBPyConnection:
-    """Подключение к DuckDB с лимитами памяти и доступом к RustFS через httpfs."""
-    con = duckdb.connect(
-        config={
-            "memory_limit": settings.duckdb_memory_limit,
-            "threads": settings.duckdb_threads,
-            "preserve_insertion_order": False,
-        }
-    )
-    con.execute("INSTALL httpfs; LOAD httpfs;")
-    con.execute(f"""
-        SET s3_endpoint='{settings.s3_endpoint.replace("http://", "")}';
-        SET s3_access_key_id='{settings.s3_access_key}';
-        SET s3_secret_access_key='{settings.s3_secret_key}';
-        SET s3_region='{settings.s3_region}';
-        SET s3_url_style='path';
-        SET s3_use_ssl=false;
-    """)
-    return con
-
-
-def render(template: str, values: dict[str, str]) -> str:
-    sql = template
-    for name, value in values.items():
-        sql = sql.replace("{{" + name + "}}", value)
-    missing = [
-        line for line in sql.splitlines()
-        if "{{" in line and not line.strip().startswith("--")
-    ]
-    if missing:
-        raise ValueError(f"не подставлены плейсхолдеры: {missing}")
-    return sql
 
 
 def main() -> int:

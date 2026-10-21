@@ -1,0 +1,11 @@
+skill1,skill2,n,med_combo,base_skill,n_base,med_base,delta,delta_pct,junior_combo,junior_base
+ios,solid,33,200100.0,ios,350,150000.0,50100.0,33.4,0.364,0.626
+android,dagger 2,36,200000.0,android,462,158300.0,41700.0,26.34,0.25,0.552
+java,postgresql,39,200000.0,java,291,174000.0,26000.0,14.94,0.41,0.467
+git,solid,42,174000.0,git,417,150000.0,24000.0,16.0,0.405,0.597
+android,android sdk,166,180000.0,android,462,158300.0,21700.0,13.71,0.47,0.552
+android,kotlin,264,180000.0,android,462,158300.0,21700.0,13.71,0.458,0.552
+kotlin,postgresql,40,217500.0,kotlin,428,197875.0,19625.0,9.92,0.325,0.418
+android sdk,kotlin,166,180000.0,android sdk,210,170000.0,10000.0,5.88,0.476,0.529
+ios,swift,160,160000.0,ios,350,150000.0,10000.0,6.67,0.575,0.626
+ios,uikit,49,160000.0,ios,350,150000.0,10000.0,6.67,0.694,0.626

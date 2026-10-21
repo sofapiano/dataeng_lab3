@@ -1,0 +1,11 @@
+skill1,skill2,skill3,n,med_combo,base_skill,n_base,med_base,delta,delta_pct,junior_combo,junior_base
+java,kotlin,spring boot,24,258975.0,java,291,174000.0,84975.0,48.84,0.042,0.467
+android,dagger 2,kotlin,35,200000.0,android,462,158300.0,41700.0,26.34,0.229,0.552
+java,kotlin,postgresql,33,215000.0,java,291,174000.0,41000.0,23.56,0.333,0.467
+java,kotlin,spring framework,21,215000.0,java,291,174000.0,41000.0,23.56,0.143,0.467
+android,ios,typescript,21,190000.0,android,462,158300.0,31700.0,20.03,0.381,0.552
+android sdk,dagger 2,kotlin,28,198750.0,android sdk,210,170000.0,28750.0,16.91,0.286,0.529
+javascript,react,react native,25,156600.0,javascript,90,130000.0,26600.0,20.46,0.52,0.644
+javascript,react native,typescript,24,156600.0,javascript,90,130000.0,26600.0,20.46,0.583,0.644
+ios,swift,ооп,46,174000.0,ios,350,150000.0,24000.0,16.0,0.457,0.626
+android,android sdk,dagger 2,29,180000.0,android,462,158300.0,21700.0,13.71,0.31,0.552
