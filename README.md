@@ -32,8 +32,12 @@ docker compose ps
 - Веб-консоль: <http://localhost:9001/rustfs/console/> (в RustFS 1.0.1 консоль живёт под префиксом `/rustfs/console/`)
 - Учётные данные: `rustfsadmin` / `rustfsadmin` (см. `infra/.env`)
 
-Данные дисков лежат на хосте в `D:\rustfs\disk1..4` (bind mounts), поэтому
-пересоздание контейнера их не теряет.
+Данные лежат в **именованном томе Docker** `infra_rustfs_data` (Linux-ФС внутри
+Docker VM). Bind-mount с Windows-хоста (`D:\rustfs\disk1`) использовать нельзя:
+Windows-ФС не поддерживает блокировки, которые RustFS берёт на диски, и
+хранилище начинает отдавать `503 SlowDownRead` (потеря кворума erasure-кода).
+Учтите: смена тома означает потерю данных — том пересоздаётся вместе с
+контейнером.
 
 ### Создать бакет `hh-lake`
 
@@ -51,8 +55,10 @@ python scripts/upload_dataset.py
 ```
 
 Кладёт `data/raw/it_vacancies_2024.csv` (808 МБ) в `s3://hh-lake/raw/it_vacancies_2024.csv`
-multipart-загрузкой (64 МБ на часть, 4 потока) и сверяет размер/содержимое.
+multipart-загрузкой (32 МБ на часть, 2 потока) и сверяет размер/содержимое.
 Транскрипт: `reports/output/stage2_upload.txt`.
+
+Повторная проверка без перезаливки: `python scripts/upload_dataset.py --verify`.
 
 Проверка доступа DuckDB к этому объекту и побайтная сверка MD5:
 
@@ -67,3 +73,18 @@ python scripts/check_duckdb_s3.py
 `configs/pipeline.env` (создаётся из `configs/pipeline.example.env`) хранит
 endpoint, ключи, имя бакета, ключи объектов и параметры MapReduce.
 Переменные окружения имеют приоритет над файлом.
+
+## Ограничения памяти
+
+На машине 8 ГБ RAM, из которых свободно меньше 1 ГБ. DuckDB по умолчанию
+резервирует ~80% физической памяти и падает на старте с
+`Memory allocation still failed`. Поэтому лимиты заданы явно в
+`configs/pipeline.env`:
+
+```
+DUCKDB_MEMORY_LIMIT=1GB
+DUCKDB_THREADS=2
+```
+
+Скрипты, работающие с DuckDB, дополнительно выставляют
+`OPENBLAS_NUM_THREADS=1` **до** импорта `duckdb`.
