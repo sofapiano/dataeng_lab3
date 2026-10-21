@@ -9,6 +9,7 @@ __pycache__/
 *.jsonl
 *.duckdb
 *.db
+out/
 
 # OS/editor
 .DS_Store
