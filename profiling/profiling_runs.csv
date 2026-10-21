@@ -1,0 +1,7 @@
+approach,run,seconds,peak_rss_mib
+mapreduce,1,23.354,597.8
+mapreduce,2,18.131,567.3
+mapreduce,3,13.367,574.2
+duckdb,1,6.374,999.7
+duckdb,2,4.854,999.6
+duckdb,3,4.384,1000.3

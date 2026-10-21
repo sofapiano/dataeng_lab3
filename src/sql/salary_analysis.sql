@@ -99,10 +99,11 @@ GROUP BY a.skill, b.skill, c.skill;
 CREATE OR REPLACE TEMP TABLE pair_effects AS
 WITH members AS (
     SELECT p.skill1, p.skill2, p.n, p.med AS med_combo, p.junior_share AS junior_combo,
-           sal.skill AS member, pop.n_all, sal.n_sal, sal.med_sal, sal.junior_share AS junior_base
-    FROM pair_salary p
-    JOIN skill_pop pop ON pop.skill IN (p.skill1, p.skill2)
-    JOIN skill_salary sal ON sal.skill IN (p.skill1, p.skill2)
+           m.member, pop.n_all, sal.n_sal, sal.med_sal, sal.junior_share AS junior_base
+    FROM pair_salary p,
+         unnest([p.skill1, p.skill2]) AS m(member)
+    JOIN skill_pop pop ON pop.skill = m.member
+    JOIN skill_salary sal ON sal.skill = m.member
 ), based AS (
     SELECT * FROM members
     QUALIFY row_number() OVER (
@@ -127,10 +128,11 @@ CREATE OR REPLACE TEMP TABLE triple_effects AS
 WITH members AS (
     SELECT t.skill1, t.skill2, t.skill3, t.n, t.med AS med_combo,
            t.junior_share AS junior_combo,
-           sal.skill AS member, pop.n_all, sal.n_sal, sal.med_sal, sal.junior_share AS junior_base
-    FROM triple_salary t
-    JOIN skill_pop pop ON pop.skill IN (t.skill1, t.skill2, t.skill3)
-    JOIN skill_salary sal ON sal.skill IN (t.skill1, t.skill2, t.skill3)
+           m.member, pop.n_all, sal.n_sal, sal.med_sal, sal.junior_share AS junior_base
+    FROM triple_salary t,
+         unnest([t.skill1, t.skill2, t.skill3]) AS m(member)
+    JOIN skill_pop pop ON pop.skill = m.member
+    JOIN skill_salary sal ON sal.skill = m.member
 ), based AS (
     SELECT * FROM members
     QUALIFY row_number() OVER (

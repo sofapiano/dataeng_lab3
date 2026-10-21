@@ -1,11 +1,11 @@
 skill1,skill2,skill3,n,med_combo,base_skill,n_base,med_base,delta,delta_pct,junior_combo,junior_base
-java,kotlin,spring boot,24,258975.0,java,291,174000.0,84975.0,48.84,0.042,0.467
-android,dagger 2,kotlin,35,200000.0,android,462,158300.0,41700.0,26.34,0.229,0.552
-java,kotlin,postgresql,33,215000.0,java,291,174000.0,41000.0,23.56,0.333,0.467
-java,kotlin,spring framework,21,215000.0,java,291,174000.0,41000.0,23.56,0.143,0.467
+java,kotlin,spring boot,24,258975.0,kotlin,428,197875.0,61100.0,30.88,0.042,0.418
 android,ios,typescript,21,190000.0,android,462,158300.0,31700.0,20.03,0.381,0.552
-android sdk,dagger 2,kotlin,28,198750.0,android sdk,210,170000.0,28750.0,16.91,0.286,0.529
-javascript,react,react native,25,156600.0,javascript,90,130000.0,26600.0,20.46,0.52,0.644
-javascript,react native,typescript,24,156600.0,javascript,90,130000.0,26600.0,20.46,0.583,0.644
+android sdk,git,java,61,179220.0,git,417,150000.0,29220.0,19.48,0.475,0.597
 ios,swift,ооп,46,174000.0,ios,350,150000.0,24000.0,16.0,0.457,0.626
 android,android sdk,dagger 2,29,180000.0,android,462,158300.0,21700.0,13.71,0.31,0.552
+android,android sdk,git,71,179220.0,android,462,158300.0,20920.0,13.22,0.493,0.552
+java,kotlin,postgresql,33,215000.0,kotlin,428,197875.0,17125.0,8.65,0.333,0.418
+java,kotlin,spring framework,21,215000.0,kotlin,428,197875.0,17125.0,8.65,0.143,0.418
+git,ios,swift,76,160000.0,ios,350,150000.0,10000.0,6.67,0.697,0.626
+git,ios,uikit,21,160000.0,ios,350,150000.0,10000.0,6.67,0.762,0.626

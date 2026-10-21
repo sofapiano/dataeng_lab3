@@ -1,11 +1,11 @@
 skill1,skill2,skill3,n,med_combo,base_skill,n_base,med_base,delta,delta_pct,junior_combo,junior_base
+java,kotlin,mvvm,30,122500.0,kotlin,428,197875.0,-75375.0,-38.09,0.533,0.418
+android sdk,kotlin,ооп,33,130000.0,kotlin,428,197875.0,-67875.0,-34.3,0.697,0.418
+git,kotlin,mvvm,24,130500.0,kotlin,428,197875.0,-67375.0,-34.05,0.417,0.418
+git,kotlin,solid,20,130500.0,kotlin,428,197875.0,-67375.0,-34.05,0.4,0.418
+java,kotlin,rxjava,31,130500.0,kotlin,428,197875.0,-67375.0,-34.05,0.29,0.418
 android,ios,rest,24,100025.0,android,462,158300.0,-58275.0,-36.81,0.75,0.552
 android,ios,react native,36,100050.0,android,462,158300.0,-58250.0,-36.8,0.611,0.552
-git,ios,objective-c,22,95000.0,git,417,150000.0,-55000.0,-36.67,0.909,0.597
-git,objective-c,swift,20,95000.0,git,417,150000.0,-55000.0,-36.67,0.9,0.597
-java,kotlin,mvvm,30,122500.0,java,291,174000.0,-51500.0,-29.6,0.533,0.467
-git,ios,rest api,23,100050.0,git,417,150000.0,-49950.0,-33.3,0.739,0.597
-kotlin,mvvm,retrofit,21,150000.0,kotlin,428,197875.0,-47875.0,-24.19,0.381,0.418
-java,kotlin,rxjava,31,130500.0,java,291,174000.0,-43500.0,-25.0,0.29,0.467
-flutter,git,ооп,20,93750.0,flutter,215,135000.0,-41250.0,-30.56,0.85,0.707
-android sdk,kotlin,ооп,33,130000.0,android sdk,210,170000.0,-40000.0,-23.53,0.697,0.529
+android,kotlin,ооп,42,140000.0,kotlin,428,197875.0,-57875.0,-29.25,0.643,0.418
+android sdk,kotlin,retrofit,26,140250.0,kotlin,428,197875.0,-57625.0,-29.12,0.538,0.418
+flutter,git,ооп,20,93750.0,git,417,150000.0,-56250.0,-37.5,0.85,0.597
