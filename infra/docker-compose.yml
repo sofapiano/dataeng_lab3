@@ -1,18 +1,53 @@
-version: "3.9"
+# Этап 1. Объектное хранилище RustFS (S3-совместимое).
+#
+# Запуск:
+#   cd infra
+#   docker compose up -d
+#   docker compose logs -f rustfs
+#
+# S3 API:     http://localhost:9000   (path-style addressing)
+# Web console:http://localhost:9001/rustfs/console/
+#
+# Учётные данные берутся из infra/.env (в репозитории лежит только .env.example).
 
 services:
   rustfs:
     image: rustfs/rustfs:latest
     container_name: rustfs
+    restart: unless-stopped
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "9000:9000" # S3 API
+      - "9001:9001" # Web console
     environment:
-      RUSTFS_ROOT_USER: ${RUSTFS_ROOT_USER:-minioadmin}
-      RUSTFS_ROOT_PASSWORD: ${RUSTFS_ROOT_PASSWORD:-minioadmin}
-    command: ["server", "/data", "--console-address", ":9001"]
+      # Реальные имена переменных именно такие (RUSTFS_ROOT_USER/PASSWORD не
+      # поддерживаются этой версией — сервер молча уходит на дефолт).
+      RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY:-rustfsadmin}
+      RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY:-rustfsadmin}
+      # 4 диска на одном хосте: RustFS поднимает erasure-код, но проверку
+      # «разные физические носители» на одной машине пропускаем.
+      RUSTFS_VOLUMES: /data/disk{1...4}
+      RUSTFS_UNSAFE_BYPASS_DISK_CHECK: "true"
+      # Web-консоль (в версии 1.0.1 выключена по умолчанию).
+      RUSTFS_CONSOLE_ENABLE: "true"
+      RUSTFS_CONSOLE_ADDRESS: ":9001"
+      RUSTFS_CONSOLE_CORS_ALLOWED_ORIGINS: "*"
+      RUSTFS_OBS_LOG_DIRECTORY: /logs
     volumes:
+      # Данные живут в именованном томе Docker (нативная ФС внутри Docker VM).
+      #
+      # ВАЖНО: bind-mount с Windows-хоста (D:\rustfs\disk1) использовать НЕ надо.
+      # Файловая система Windows поверх Docker Desktop не поддерживает
+      # блокировки, которые использует RustFS для локов дисков. В итоге
+      # диски начинают отдавать I/O error, erasure-код теряет кворум чтения
+      # ("InsufficientReadQuorum") и хранилище отвечает 503 SlowDownRead.
+      # Именованный том — это обычная Linux-ФС, локи работают штатно.
       - rustfs_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:9000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
 
 volumes:
   rustfs_data:

@@ -1,0 +1,353 @@
+
+=== sniff_csv ===
+SELECT * FROM sniff_csv('data/raw/it_vacancies_2024.csv')
+Delimiter Quote Escape NewLineDelimiter Comment  SkipRows  HasHeader                                                                                                                  Columns DateFormat TimestampFormat UserArguments                                                                                                                   Prompt
+        ,     "      "               \n (empty)         0       True [{'name': 'source', 'type': 'VARCHAR'}, {'name': 'vacancy_id', 'type': 'BIGINT'}, {'name': 'status', 'type': 'VARCHAR...   %Y-%m-%d            None          None FROM read_csv('data/raw/it_vacancies_2024.csv', auto_detect=false, delim=',', quote='"', escape='"', new_line='\n', s...
+
+=== Колонки (23) и число строк ===
+rows = 229388
+source, vacancy_id, status, snapshot_date, published_at, area, employer_id, employer_inn, employer_ogrn, employer_name, name, role, sphere, salary_from, salary_to, currency, gross, experience, schedule, employment, key_skills, description, url
+
+=== Проверка переносов строк ===
+символов \n в файле: 229389, записей (строк данных): 229388
+Если \n ≈ rows+1 -> переносов внутри полей нет, можно резать по строкам. Если \n заметно больше -> есть многострочные поля, нужен CSV-парсер.
+
+=== Первые 5 строк ===
+SELECT * FROM v LIMIT 5
+source vacancy_id     status snapshot_date published_at      area employer_id employer_inn   employer_ogrn employer_name                                     name                     role sphere salary_from salary_to currency gross         experience         schedule       employment                               key_skills                              description                             url
+    hh  106654617 not_active    2024-09-03   2024-09-02 Краснодар     4105707          NaN   1197325010211          None                 Python Backend Developer Программист, разработчик   None         NaN       NaN      NaN   NaN      От 3 до 6 лет Удаленная работа Полная занятость     Python; PostgreSQL; Django Framework В Nord Clan мы занимаемся разработкой... https://hh.ru/vacancy/106654617
+    hh   93502358 not_active    2024-08-23   2024-02-20      Омск      137955   7500018249   1247500002122          None               Специалист по внедрению 1С       Системный аналитик   None      160000       NaN      RUR false      От 3 до 6 лет      Полный день Полная занятость                                      NaN Требования: наличие высшего образован...  https://hh.ru/vacancy/93502358
+    hh   91090091 not_active    2024-08-23   2024-02-25    Москва      137955   7500018249   1247500002122          None Сетевой инженер (ведущий инженер отде...          Сетевой инженер   None         NaN       NaN      NaN   NaN От 1 года до 3 лет      Полный день Полная занятость Linux; Wifi networks; STP; IPSec; Net... Задачи: Сопровождение, развитие, обес...  https://hh.ru/vacancy/91090091
+    hh  106672552 not_active    2024-09-03   2024-09-02    Москва        3177          NaN   1177746107362          None              Консультант-аналитик 1С:ЗУП                 Аналитик   None         NaN    200000      RUR false От 1 года до 3 лет      Полный день Полная занятость 1С: Зарплата и управление персоналом;... ПЕРВЫЙ БИТ, ОФИС «СПОРТИВНАЯ» - крупн... https://hh.ru/vacancy/106672552
+    hh  106282846 not_active    2024-08-25   2024-08-24    Москва     9656390          NaN 324265100028665          None   Специалист (менеджер) по Google Sheets Программист, разработчик   None         NaN       NaN      NaN   NaN От 1 года до 3 лет Удаленная работа Полная занятость                  Аналитика маркетплейсов Компания - ведущий сервис аналитик Wi... https://hh.ru/vacancy/106282846
+
+=== Пропуски по колонкам ===
+source                                   пустых:         0  (  0.0%)
+vacancy_id                               пустых:         0  (  0.0%)
+status                                   пустых:         0  (  0.0%)
+snapshot_date                            пустых:         0  (  0.0%)
+published_at                             пустых:         0  (  0.0%)
+area                                     пустых:         0  (  0.0%)
+employer_id                              пустых:       273  (  0.1%)
+employer_inn                             пустых:    205215  ( 89.5%)
+employer_ogrn                            пустых:    127837  ( 55.7%)
+employer_name                            пустых:    229388  (100.0%)
+name                                     пустых:         0  (  0.0%)
+role                                     пустых:         0  (  0.0%)
+sphere                                   пустых:    229388  (100.0%)
+salary_from                              пустых:    142526  ( 62.1%)
+salary_to                                пустых:    174788  ( 76.2%)
+currency                                 пустых:    130189  ( 56.8%)
+gross                                    пустых:    130231  ( 56.8%)
+experience                               пустых:         0  (  0.0%)
+schedule                                 пустых:         0  (  0.0%)
+employment                               пустых:         0  (  0.0%)
+key_skills                               пустых:     83454  ( 36.4%)
+description                              пустых:         0  (  0.0%)
+url                                      пустых:         0  (  0.0%)
+
+=== Число различных значений ===
+source                                   ~1
+vacancy_id                               ~236345
+status                                   ~2
+snapshot_date                            ~21
+published_at                             ~235
+area                                     ~1601
+employer_id                              ~31848
+employer_inn                             ~6094
+employer_ogrn                            ~16713
+employer_name                            ~0
+name                                     ~82661
+role                                     ~17
+sphere                                   ~0
+salary_from                              ~1834
+salary_to                                ~1639
+currency                                 ~7
+gross                                    ~2
+experience                               ~4
+schedule                                 ~5
+employment                               ~5
+key_skills                               ~83657
+description                              ~163304
+url                                      ~231448
+
+=== Значения колонки source ===
+SELECT "source" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+value      n
+   hh 229388
+
+=== Значения колонки status ===
+SELECT "status" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+     value      n
+not_active 209497
+    active  19891
+
+=== Значения колонки snapshot_date ===
+SELECT "snapshot_date" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+     value      n
+2024-08-23 202579
+2024-09-10   2165
+2024-08-27   2141
+2024-09-03   2014
+2024-09-12   1820
+2024-09-15   1809
+2024-08-28   1807
+2024-09-04   1791
+2024-09-05   1752
+2024-09-06   1692
+2024-08-29   1662
+2024-09-11   1649
+2024-09-07   1521
+2024-08-30   1452
+2024-08-31   1296
+2024-08-24   1295
+2024-09-13    412
+2024-08-25    103
+2024-08-26     92
+2024-09-09     92
+2024-09-01     84
+2024-09-08     83
+2024-09-02     77
+
+=== Значения колонки employer_name ===
+SELECT "employer_name" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+value      n
+ None 229388
+
+=== Значения колонки role ===
+SELECT "role" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+                                       value     n
+                    Программист, разработчик 87803
+                                    Аналитик 30112
+                     Системный администратор 29723
+                                 Тестировщик 14151
+   Специалист по информационной безопасности 13453
+                          Системный аналитик 10609
+                             Бизнес-аналитик  8232
+                           Системный инженер  6214
+                             Сетевой инженер  5767
+              Руководитель группы разработки  5604
+                              DevOps-инженер  5158
+                BI-аналитик, аналитик данных  3969
+                        Технический писатель  2798
+                        Продуктовый аналитик  1685
+                              Дата-сайентист  1534
+               Руководитель отдела аналитики  1437
+Директор по информационным технологиям (CIO)  1139
+
+=== Значения колонки sphere ===
+SELECT "sphere" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+value      n
+ None 229388
+
+=== Значения колонки currency ===
+SELECT "currency" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+value      n
+  NaN 130189
+  RUR  97487
+  USD   1291
+  EUR    219
+  KZT    134
+  BYR     44
+  UZS     21
+  KGS      3
+
+=== Значения колонки gross ===
+SELECT "gross" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+value      n
+  NaN 130231
+false  67667
+ true  31490
+
+=== Значения колонки experience ===
+SELECT "experience" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+             value      n
+От 1 года до 3 лет 109477
+     От 3 до 6 лет  87476
+         Нет опыта  22892
+       Более 6 лет   9543
+
+=== Значения колонки schedule ===
+SELECT "schedule" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+           value      n
+     Полный день 168136
+Удаленная работа  49713
+   Гибкий график   8543
+  Сменный график   2268
+  Вахтовый метод    728
+
+=== Значения колонки employment ===
+SELECT "employment" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 40
+              value      n
+   Полная занятость 219402
+Частичная занятость   4873
+         Стажировка   4026
+   Проектная работа   1085
+       Волонтерство      2
+
+=== Кандидаты в колонки ===
+ID: ['vacancy_id', 'employer_id']
+НАЗВАНИЕ: ['vacancy_id', 'employer_name', 'name']
+НАВЫКИ: ['key_skills']
+ЗАРПЛАТА: ['salary_from', 'salary_to', 'currency', 'gross']
+РЕГИОН: ['area']
+
+=== [НАЗВАНИЕ] примеры значений: vacancy_id ===
+SELECT "vacancy_id" AS value FROM v
+                 WHERE "vacancy_id" IS NOT NULL AND trim("vacancy_id")<>'' USING SAMPLE 10 ROWS
+    value
+ 91300704
+104707925
+104336349
+105261696
+ 91034763
+102921476
+ 91546235
+ 91279947
+ 91667058
+ 93203638
+
+=== [НАЗВАНИЕ] примеры значений: employer_name ===
+SELECT "employer_name" AS value FROM v
+                 WHERE "employer_name" IS NOT NULL AND trim("employer_name")<>'' USING SAMPLE 10 ROWS
+Empty DataFrame
+Columns: [value]
+Index: []
+
+=== [НАЗВАНИЕ] примеры значений: name ===
+SELECT "name" AS value FROM v
+                 WHERE "name" IS NOT NULL AND trim("name")<>'' USING SAMPLE 10 ROWS
+                                      value
+Системный инженер / DevOps инженер (стажер)
+                Ведущий Linux-администратор
+                       Аналитик данных (BI)
+                          Аналитик Junior +
+                    Системный архитектор 1С
+                            Web-разработчик
+                   Бизнес-аналитик (стажер)
+  Стажёр в отдел внедрения 1С (IT-компания)
+                              C++ Developer
+                        Android-разработчик
+
+=== [НАВЫКИ] примеры значений: key_skills ===
+SELECT "key_skills" AS value FROM v
+                 WHERE "key_skills" IS NOT NULL AND trim("key_skills")<>'' USING SAMPLE 10 ROWS
+                                                                                                                   value
+1С программирование; 1С: Предприятие 8; 1С: Зарплата и кадры; Основы бухгалтерского учета; Бухгалтерский учет; ERP-си...
+Информационная безопасность; Технические средства информационной защиты; Средства криптографической защиты информации...
+                                                                     1С: Предприятие 8; 1С программирование; Грамотность
+                                                                          Java; Spring Boot; Apache Kafka; RabbitMQ; SQL
+                                                             JavaScript; HTML; Git; Angular; Frontend; React; TypeScript
+Microservices; PostgreSQL; Kafka; OpenShift; Docker; Kubernetes; Hibernate ORM; Git; Spring Framework; Spring Boot; S...
+                        Информационная безопасность; Аудит безопасности; ИСПДн; Разработка инструкций; Деловая переписка
+
+=== [ЗАРПЛАТА] примеры значений: salary_from ===
+SELECT "salary_from" AS value FROM v
+                 WHERE "salary_from" IS NOT NULL AND trim("salary_from")<>'' USING SAMPLE 10 ROWS
+ value
+100000
+300000
+ 45000
+ 57000
+
+=== [ЗАРПЛАТА] примеры значений: salary_to ===
+SELECT "salary_to" AS value FROM v
+                 WHERE "salary_to" IS NOT NULL AND trim("salary_to")<>'' USING SAMPLE 10 ROWS
+ value
+175000
+300000
+
+=== [ЗАРПЛАТА] примеры значений: currency ===
+SELECT "currency" AS value FROM v
+                 WHERE "currency" IS NOT NULL AND trim("currency")<>'' USING SAMPLE 10 ROWS
+value
+  RUR
+  RUR
+  RUR
+  RUR
+
+=== [ЗАРПЛАТА] примеры значений: gross ===
+SELECT "gross" AS value FROM v
+                 WHERE "gross" IS NOT NULL AND trim("gross")<>'' USING SAMPLE 10 ROWS
+value
+ true
+ true
+ true
+false
+false
+
+=== [РЕГИОН] примеры значений: area ===
+SELECT "area" AS value FROM v
+                 WHERE "area" IS NOT NULL AND trim("area")<>'' USING SAMPLE 10 ROWS
+          value
+       Балашиха
+         Москва
+         Москва
+    Новосибирск
+        Воронеж
+Санкт-Петербург
+         Москва
+         Москва
+         Ижевск
+         Москва
+
+=== Разделители в key_skills (число значений с символом) ===
+SELECT
+                count(*) FILTER (WHERE "key_skills" LIKE '%,%')  AS comma,
+                count(*) FILTER (WHERE "key_skills" LIKE '%;%')  AS semicolon,
+                count(*) FILTER (WHERE "key_skills" LIKE '%|%')  AS pipe,
+                count(*) FILTER (WHERE "key_skills" LIKE '[%')   AS bracket_list,
+                count(*) FILTER (WHERE "key_skills" LIKE '%' || chr(10) || '%') AS newline,
+                count(*) FILTER (WHERE "key_skills" IS NOT NULL AND trim("key_skills")<>'') AS non_empty
+             FROM v
+ comma  semicolon  pipe  bracket_list  newline  non_empty
+  2832     139746    15             0        0     145934
+
+=== Числовой профиль: salary_from ===
+SELECT count(try_cast("salary_from" AS DOUBLE)) AS numeric_cnt,
+                    min(try_cast("salary_from" AS DOUBLE)) AS min,
+                    median(try_cast("salary_from" AS DOUBLE)) AS median,
+                    max(try_cast("salary_from" AS DOUBLE)) AS max
+             FROM v
+ numeric_cnt  min  median        max
+       86862  1.0 80000.0 25000000.0
+
+=== Числовой профиль: salary_to ===
+SELECT count(try_cast("salary_to" AS DOUBLE)) AS numeric_cnt,
+                    min(try_cast("salary_to" AS DOUBLE)) AS min,
+                    median(try_cast("salary_to" AS DOUBLE)) AS median,
+                    max(try_cast("salary_to" AS DOUBLE)) AS max
+             FROM v
+ numeric_cnt  min   median        max
+       54600  1.0 120000.0 30000000.0
+
+=== Топ-15 значений: area ===
+SELECT "area" AS value, count(*) AS n FROM v GROUP BY 1 ORDER BY n DESC LIMIT 15
+          value     n
+         Москва 92728
+Санкт-Петербург 25436
+   Екатеринбург  8993
+    Новосибирск  6909
+         Казань  5598
+Нижний Новгород  4999
+      Краснодар  3945
+         Самара  3501
+ Ростов-на-Дону  3191
+        Воронеж  2932
+      Челябинск  2609
+          Пермь  2432
+            Уфа  2294
+     Красноярск  2246
+         Тюмень  2052
+
+=== Уникальность vacancy_id ===
+SELECT count(*) AS total, count(DISTINCT "vacancy_id") AS uniq FROM v
+ total   uniq
+229388 229388
+
+=== Уникальность employer_id ===
+SELECT count(*) AS total, count(DISTINCT "employer_id") AS uniq FROM v
+ total  uniq
+229388 31796
+
+Готово. Отчёт: out/report.txt

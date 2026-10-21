@@ -9,7 +9,7 @@ __pycache__/
 *.jsonl
 *.duckdb
 *.db
-out/
+*.duckdb
 
 # OS/editor
 .DS_Store
@@ -20,3 +20,8 @@ out/
 logs/
 profiling/output/
 reports/output/
+
+# Локальные секреты и машинные настройки
+infra/.env
+configs/pipeline.env
+.env
