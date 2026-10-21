@@ -1,0 +1,1139 @@
+skill,count
+kotlin,1347
+android,1179
+ios,898
+git,889
+java,865
+swift,715
+android sdk,613
+flutter,443
+mvvm,338
+ооп,324
+dart,298
+react native,234
+solid,194
+rest,180
+uikit,175
+objective-c,170
+postgresql,170
+rest api,169
+sql,163
+javascript,159
+xcode,147
+английский язык,144
+typescript,143
+react,132
+rxjava,132
+spring framework,129
+retrofit,120
+coroutines,107
+ci/cd,101
+swiftui,98
+gradle,95
+jetpack compose,91
+mvp,91
+kafka,87
+docker,83
+dagger 2,82
+firebase,80
+spring boot,80
+android studio,77
+json api,73
+atlassian jira,69
+api,67
+linux,64
+c++,62
+html,60
+mvc,60
+clean architecture,59
+sqlite,58
+viper,58
+redux,57
+unit testing,56
+http,55
+ios sdk,55
+rxswift,55
+scrum,55
+cocoapods,54
+разработка по,54
+kubernetes,53
+dagger,50
+json,49
+ui,47
+figma,46
+realm,45
+combine,44
+compose,43
+mvi,43
+mysql,43
+мобильные приложения,43
+gitlab,42
+node.js,41
+room,41
+css,40
+работа в команде,40
+bloc,39
+python,37
+xml,35
+c#,34
+dagger2,34
+unity,34
+kotlin coroutines,33
+java se,31
+mongodb,31
+php,30
+apache kafka,29
+coredata,29
+hilt,28
+mobx,28
+graphql,27
+redis,27
+design patterns,26
+it,26
+qt,25
+oracle,24
+alamofire,23
+gcd,23
+websocket,23
+обучение и развитие,23
+agile,22
+c/c++,22
+html5,21
+maven,21
+rabbitmq,21
+web,21
+core data,20
+kotlin multiplatform,20
+ms sql,20
+atlassian confluence,19
+hibernate orm,19
+junit,19
+sdk,19
+удаленная работа,19
+jira,18
+mac os,18
+nosql,18
+soap,18
+aosp,17
+koin,17
+rx,17
+spring,17
+apache maven,16
+ktor,16
+qml,16
+базы данных,16
+мобильная разработка,16
+cocoa touch,15
+github,15
+foundation,14
+rxjava2,14
+swift ui,14
+tcp/ip,14
+xamarin,14
+css3,13
+postgres,13
+swagger,13
+аналитическое мышление,13
+разработка логистики,13
+angularjs,12
+coroutine,12
+dry,12
+fastlane,12
+jenkins,12
+okhttp,12
+ux,12
+немецкий язык,12
+сoroutines,12
+управление командой,12
+agile project management,11
+compose multiplatform,11
+dio,11
+hibernate,11
+java script,11
+material design,11
+reactjs,11
+vue.js,11
+оптимизация кода,11
+торговая площадка,11
+adobe photoshop,10
+android jetpack,10
+autolayout,10
+bash,10
+flow,10
+js,10
+snapkit,10
+swift alliance,10
+разработка мобильных приложений,10
+1с программирование,9
+clickhouse,9
+code review,9
+golang,9
+kiss,9
+kmp,9
+kotlin coroutine,9
+react.js,9
+webrtc,9
+микросервисная архитектура,9
+разработка нового продукта,9
+управление проектами,9
+.net framework,8
+appsflyer,8
+cmake,8
+fastapi,8
+game programming,8
+google maps api,8
+jquery,8
+orm,8
+react-native,8
+retrofit 2,8
+spm,8
+webpack,8
+xсode,8
+1с: предприятие 8,7
+afnetworking,7
+angular,7
+appstore,7
+ci,7
+es6,7
+frontend,7
+go,7
+google play,7
+grafana,7
+grpc,7
+java core,7
+jetpack,7
+livedata,7
+moya,7
+open source,7
+redmine,7
+restful api,7
+ruby,7
+rxjava 2,7
+sailfish os,7
+websockets,7
+база данных: oracle,7
+разработка,7
+рефакторинг кода,7
+сicerone,7
+blockchain,6
+cocoa,6
+di,6
+docker-compose,6
+https,6
+kmm,6
+macos,6
+mobile,6
+next.js,6
+objc,6
+riverpod,6
+storekit,6
+webview,6
+многопоточность,6
+программист,6
+с#,6
+1с: документооборот,5
+aidl,5
+android material,5
+android ui,5
+apache cassandra,5
+appstore и testflight,5
+aws,5
+backend,5
+ble,5
+cleanswift,5
+cordova,5
+development,5
+divkit,5
+django framework,5
+elasticsearch,5
+git-flow.,5
+gitlab ci/cd,5
+glide,5
+https и json,5
+ios 13 human interface guidelines.,5
+jni,5
+maui,5
+moxy,5
+opengl,5
+postman,5
+provider,5
+react/redux,5
+reactnative,5
+restapi,5
+room service,5
+spring data,5
+storyboard/xib,5
+swift 5.1,5
+tdd,5
+ui/ux,5
+xib,5
+коммуникабельность,5
+паттерны проектирования,5
+разработка технических заданий,5
+тайм-менеджмент,5
+умение работать в команде,5
+.net core,4
+adjust,4
+akka,4
+amplitude,4
+android api,4
+ansible,4
+api для web приложений,4
+ar,4
+architecture components,4
+arkit,4
+aso,4
+bootstrap,4
+camera2,4
+cassandra,4
+cicerone,4
+devops,4
+entity framework,4
+exoplayer,4
+flutter sdk,4
+freezed,4
+gson,4
+html-верстка,4
+iphone,4
+istio,4
+jpa,4
+junior,4
+jvm,4
+keycloak,4
+lottie,4
+microservices,4
+middle,4
+middle+,4
+mpv,4
+objectivec,4
+os android,4
+play framework,4
+pwa,4
+restful,4
+retrofit2,4
+rxdart,4
+saas,4
+stl,4
+svn,4
+teamcity,4
+udf,4
+urlsession,4
+адаптивная верстка,4
+активные продажи,4
+бизнес-анализ,4
+валидная верстка,4
+веб-программирование,4
+информационные технологии,4
+логистика,4
+микросервисы,4
+обновление конфигурации 1с,4
+организаторские навыки,4
+ответственность,4
+проектирование высоконагруженных систем,4
+работа в условиях многозадачности,4
+работа с базами данных,4
+3d max,3
+android hal,3
+android ndk,3
+android os,3
+android product flavors,3
+androidx,3
+apache tomcat,3
+appium,3
+appmetrica,3
+asp.net,3
+async,3
+async/await,3
+avfoundation,3
+await,3
+bitbucket,3
+c++/c,3
+camera3,3
+cli,3
+cockroach,3
+coreanimation,3
+cuba platform,3
+cv,3
+databinding,3
+desktop,3
+developer,3
+driver,3
+e2e,3
+electronjs,3
+es5,3
+espresso,3
+exposed,3
+flyway,3
+google analytics,3
+google cloud,3
+google play console,3
+google play market,3
+hazelcast,3
+hbase,3
+hidl,3
+intellij idea,3
+ionic,3
+java ee,3
+jetpack navigation,3
+jmix,3
+jwt,3
+k8s,3
+kaspresso,3
+kotlin multiplatform mobile,3
+laravel,3
+launcher,3
+multithreading,3
+mvpc,3
+nimble,3
+prometheus,3
+"provider, flutter_bloc, go_router, dio, firebase, shared preferences",3
+qt5,3
+react navigation,3
+realitykit,3
+ruby on rails,3
+sass,3
+scala,3
+single activity,3
+sip,3
+solid edge,3
+spring cloud,3
+spring mvc,3
+ssr,3
+storyboard,3
+teamleading,3
+ui kit,3
+ui-тесты,3
+unit тесты,3
+unit-тесты,3
+voip,3
+web3,3
+wpf,3
+xctest,3
+youtrack,3
+автоматизированное тестирование,3
+верстка,3
+грамотность,3
+деловая коммуникация,3
+еnterprise,3
+желание обучаться,3
+желание работать и развиваться,3
+кроссплатформенная разработка,3
+мобильное тестирование,3
+нагрузочное тестирование,3
+паттерны,3
+паттерны проектирования ооп,3
+приложения,3
+разработка ios,3
+разработка компьютерных игр,3
+разработка мобильных приложений ios/android,3
+разработка под android,3
+разработка приложений,3
+с++,3
+субд,3
+тестирование,3
+тестирование android,3
+тестирование ios-приложений,3
+умение адаптироваться,3
+1c: управление нашей фирмой,2
+1с: предприятие,2
+1с: унф,2
+adapty,2
+agtech,2
+analytics,2
+android qt,2
+apache cordova,2
+apphud,2
+apple arkit,2
+appstorespy,2
+arc,2
+architecture,2
+architecture framework,2
+asomobile,2
+asp.net core,2
+automotive,2
+avid media composer,2
+axios,2
+azure,2
+back-end,2
+bdui,2
+bitrix,2
+bloc / provider,2
+bug tracking systems,2
+canvas,2
+charts,2
+clean,2
+clean code,2
+cloud,2
+concurrency,2
+conductor,2
+confluence,2
+core animation,2
+core text,2
+coregraphics,2
+custom view,2
+dager,2
+dart core,2
+databases,2
+drift,2
+es6+,2
+fiddler,2
+flame,2
+flatter,2
+flexbox,2
+flink,2
+flutter dart,2
+fluttersdk,2
+fvm,2
+gambling industry,2
+gamedev,2
+getx,2
+git flow,2
+gitflow,2
+google api,2
+grand central dispatch,2
+grasp,2
+gtest,2
+hig,2
+hlsl,2
+huawei,2
+human interface guidelines,2
+i2c,2
+iaas,2
+ios 15+,2
+iot,2
+ipad,2
+java 11,2
+java/kotlin,2
+javascript node.js,2
+jssip,2
+kanban,2
+keitaro,2
+"kotlin android sdk, android jetpack coroutines dagger2 adapter delegates room mvvm, cle",2
+kotlin dsl,2
+ktor framework,2
+ldap,2
+less,2
+liquibase,2
+mercurial,2
+meteorjs,2
+micronaut framework,2
+mobile developer,2
+mockito,2
+ms visual studio,2
+mui,2
+multithread programming,2
+mutex,2
+mvi coroutines,2
+mvvmс,2
+navigation component,2
+ndk,2
+nest js,2
+nest.js,2
+netty,2
+nlp,2
+nodejs,2
+objective-с,2
+onesignal,2
+openapi,2
+openshift,2
+ormlite,2
+paas,2
+performance,2
+promisekit,2
+qa,2
+qa automation,2
+quarkus,2
+quick,2
+react.native,2
+reactive streams,2
+reanimated,2
+"rest, xml-rpc",2
+retrofit + okhttp,2
+rx2java,2
+rxcocoa,2
+rxjava3,2
+rxjs,2
+rxkotlin,2
+scenekit,2
+scicharts,2
+scss,2
+sdwebimage,2
+senior,2
+sensortower,2
+service locator,2
+soong,2
+spark,2
+spi,2
+spring boot 2,2
+springboot,2
+spritekit,2
+sql-субд,2
+swift concurrency,2
+swift package manage,2
+swiftpm,2
+swinject,2
+tarantool,2
+team management,2
+tuist,2
+tvos,2
+unit-test,2
+unit-тестирование,2
+ux / ui,2
+version control system,2
+viewbinding,2
+vue,2
+webkit,2
+window manager,2
+workmanager,2
+ws,2
+ws/rest/rpc,2
+yagni,2
+yandex сервис,2
+yandex.cloud,2
+zeplin,2
+аврора ос,2
+алгоритмы и структуры данных,2
+английский язык - в2,2
+андройд,2
+банковское по,2
+битрикс 24,2
+блочная верстка,2
+верстка интерфейсов,2
+"внимательность, ответственность",2
+гис,2
+готовность к самостоятельной работе,2
+дизайн интерфейсов,2
+дизайн-система,2
+желание быть наставником,2
+желание учиться и развиваться,2
+знание английского языка,2
+инициативность,2
+клиент-серверная архитектура,2
+креативность,2
+кроссплатформенность,2
+многофункциональный комплекс,2
+написание приложений,2
+онлайн касса,2
+оптимизация приложений,2
+опыт работы с платформой ios,2
+организация производства,2
+организация стажировок,2
+офис,2
+программирование,2
+работа с банками,2
+работа с командой,2
+разработка поисковых технологий,2
+разработка продукта,2
+разработчик,2
+с/с++/objective-c/swift,2
+составление предложений о работе,2
+стремление к профессиональному росту,2
+телематика,2
+тестирование android-приложений,2
+технолог,2
+умение работать в коллективе,2
+управление временем,2
+.net,1
+1с,1
+1с-битрикс,1
+1с: бухгалтерия,1
+1с: зарплата и управление персоналом,1
+a/b тесты,1
+active directory,1
+activity-ktx,1
+adb,1
+agile методологии,1
+ajax,1
+alps,1
+amazon web services,1
+andengine,1
+android 7.0+,1
+android framework,1
+android jetpack suite,1
+android material design guidlines,1
+android ui/ux,1
+android view,1
+android xml,1
+androidx room,1
+animation,1
+"animation, animator, transition",1
+ansi c++,1
+api key,1
+api: graphql,1
+apns,1
+apollo,1
+app frameworks,1
+app store,1
+appclips,1
+apple appstore,1
+apple store,1
+apple uikit,1
+appodeal,1
+asp.net mvc,1
+async await,1
+auto_route,1
+axios/fetch,1
+babel,1
+backbone,1
+bdd,1
+beta-тестирования,1
+betting,1
+bitrise,1
+bpmn,1
+buildcontext,1
+buildowner,1
+c,1
+c# .net core,1
+c++17,1
+camera,1
+camerax,1
+camunda,1
+canva,1
+cardview,1
+carthage,1
+casual games,1
+centrifugo,1
+cfnetwork,1
+cg,1
+ci cd,1
+cicirone,1
+cocoa pods,1
+cocoapods quick,1
+codegen,1
+codepush,1
+coil,1
+combain,1
+configurationchange,1
+coordinator,1
+coredats,1
+coreimage,1
+coreldraw,1
+coroutines + flow,1
+cpa,1
+crypto,1
+cubejs,1
+customview,1
+dagger hilt,1
+dark,1
+dart/flutter,1
+data science,1
+ddd,1
+dependency injection,1
+digital visual fortran,1
+dio/freezed,1
+dji mobile sdk/mavsdk,1
+dns,1
+dotween,1
+echo,1
+ef,1
+ef core,1
+electron,1
+entity framework core,1
+eslint,1
+event loop,1
+expo,1
+feign,1
+fintech,1
+flutter async,1
+flutter_bloc,1
+flutterflow,1
+foster,1
+fragment api,1
+fragmentmanager,1
+futter,1
+"fw: ktor, spring, compose, kotlin multiplatform, jooq, exposed",1
+games,1
+garbage collector,1
+gcd (qos),1
+gcp (good clinical practice),1
+gdb,1
+gerrit,1
+gin,1
+"git / bitbucket), commit / push / merge /pullrequest / branch",1
+gitlab ci,1
+gms + hms,1
+go-router,1
+go_router,1
+google cloud / aws cloud,1
+google cloud platform,1
+google material design,1
+google navigation,1
+gorouter,1
+graphgl,1
+graphql_codegen,1
+groovy,1
+gsm,1
+gwt,1
+hms,1
+hoc,1
+hokey app,1
+http(s),1
+hyper-casual games,1
+igaming,1
+imageloader,1
+"inf: docker, git, gitlab, gra",1
+inheritedwidget,1
+injector,1
+interface board,1
+ioc,1
+ionic framework,1
+ios coordinator pattern,1
+ios developer,1
+ios sdk 15,1
+ipados,1
+itsm,1
+java 17,1
+java servlets,1
+"java, kotlin, android",1
+javascript/typescript,1
+jdbc,1
+jest,1
+"js, ts",1
+json annotation,1
+jsx,1
+jtbd,1
+junit. субд oracle. java server pages. spring. hibernate,1
+keychain,1
+kingfisher,1
+koa,1
+kodein,1
+koltin flow,1
+kotlin flow,1
+kotlin native,1
+kotlin с jetpack compose,1
+"kotlin, mvvm + mvi, single activity, viewbinding, stateflow, coroutine, cicerone, dagger, retrofit",1
+kotlin/java,1
+laos,1
+leadership skills,1
+lightship,1
+lldb,1
+llm,1
+lte,1
+m2m,1
+make,1
+manual test,1
+mapbox,1
+metalkit,1
+microservice architecture,1
+microsevices,1
+mixpanel,1
+mlflow,1
+mmvm,1
+mobile applibation development,1
+mobile application development,1
+mobile developing,1
+mobile game,1
+mockk,1
+moment,1
+moxy mvp,1
+mrc,1
+ms sql server,1
+multi-module architecture,1
+multimodule,1
+multimodule (многомодульный проект),1
+mv-паттерны,1
+"mvi,",1
+mvi/mvvm,1
+mvicore,1
+mvvm+c,1
+mvvm/mvi,1
+mvvw,1
+mwwm,1
+nats,1
+navigation,1
+navigation architecture component,1
+net core,1
+next js,1
+nextjs,1
+nginx,1
+no-sql databases (mongodb),1
+npm,1
+nsoperation,1
+nsoperationqueue,1
+obj-c,1
+odata,1
+office,1
+ois,1
+okd,1
+okhttp3,1
+oop,1
+opencv,1
+opengl es,1
+openssl,1
+operationqueue,1
+oracle pl/sql,1
+oss,1
+paging3,1
+patterns,1
+pencilkit,1
+people management,1
+performance reviews,1
+pinlayout,1
+pipelineowner,1
+pods,1
+pr-консультирование,1
+precompose,1
+provider as di,1
+publish mobile app to app store,1
+pytorch,1
+qa engineer,1
+qa engineer & analytics,1
+qform 2d/3d,1
+qmake,1
+qtcreator,1
+quartz,1
+r&d,1
+react hook form,1
+react hooks,1
+react js,1
+react native elements,1
+react native gesture handler,1
+react native navigation,1
+react native reanimated,1
+react-navigation,1
+reactor,1
+recompose,1
+redux-saga,1
+redux/mobx,1
+rendering,1
+requests,1
+reselect,1
+"rest, json, xml, ssl",1
+rest-api,1
+rest/json,1
+rest/rpc,1
+restful apls,1
+restfull api,1
+retrofit + moshi,1
+revel,1
+rider,1
+robolectric,1
+room views,1
+rps,1
+rtk,1
+rx java,1
+rxandroid,1
+rxjava/coroutines,1
+s.o.l.i.d,1
+scripting,1
+sentry,1
+server driven ui,1
+service desk,1
+services,1
+signalr,1
+snapshot testing,1
+snapshot тесты,1
+soa,1
+socket,1
+soft skills,1
+solidworks,1
+spa,1
+spring batch,1
+spring boot test,1
+spring core,1
+spring web,1
+spring webflux,1
+springsecurity,1
+sql databases (postgresql),1
+sqlite3,1
+starscream,1
+statefulwidget,1
+statelesswidget,1
+storyboards,1
+stream,1
+structured concurrency,1
+supabase,1
+swift 5,1
+swift modern concurrencу,1
+swift package manager,1
+swift standard library,1
+swiftdata,1
+symfony,1
+system design,1
+tcp,1
+tdd/ ci,1
+temporal,1
+tensorflow,1
+testfight,1
+texture,1
+tflite api,1
+the elm architecture,1
+timber,1
+typeorm,1
+ubuntu,1
+udp,1
+ugui,1
+ui test,1
+uml,1
+unidirectional data flow,1
+unirx,1
+unit,1
+unit-тестами,1
+unit-тестировании,1
+unitask,1
+unittests,1
+unity 3d,1
+unity3d,1
+userdefaults,1
+vertx,1
+view,1
+vision pro,1
+visualstudio,1
+vpn,1
+vr,1
+vscode,1
+vue2,1
+vuejs,1
+web - разработка,1
+web application development,1
+web socket,1
+web sql,1
+web-sockets,1
+webflow,1
+webflux,1
+wedding photography,1
+windows 7,1
+windows forms,1
+xml-разметка,1
+xr,1
+yandex cloud,1
+yandex map kit,1
+yii,1
+zustand,1
+адаптивность,1
+аккредитованная ит-компания,1
+алгоритмы,1
+английский,1
+английский - в2,1
+английский — a2 — элементарный,1
+английский — b2 — средне-продвинутый,1
+английский — c1 — продвинутый,1
+андройд програмист,1
+андройд программист,1
+архитектура мобильных приложений,1
+архитектурные паттерны,1
+асинхронное программирование,1
+базовые алгоритмы,1
+бекенд,1
+битрикс24,1
+быстрое обучение,1
+вариативность в поиске решений задач,1
+веб-дизайн,1
+верстка ui кодом и желательно в xib/storyboard,1
+верстка на xml,1
+высшее образование,1
+групповое обучение,1
+деловая переписка,1
+деловое общение,1
+дружелюбие,1
+желание работать и зарабатывать,1
+желание расти и развиваться,1
+знание sqlite,1
+знание принципов material design,1
+знание принципов solid,1
+индивидуальное обучение,1
+исполнительность,1
+кotlin сoroutines,1
+код-ревью,1
+корпоративная этика,1
+криптовалюта,1
+лидерство,1
+линейное программирование,1
+логическое мышление,1
+менеджеры раскладки.,1
+менторство,1
+многозадачность,1
+многопоточное и сетевое программирование,1
+мобильная видеосъемка,1
+мобильное приложение,1
+мобильные приложение,1
+мобильные сети,1
+модульное тестирование,1
+модульные / интеграционные тесты,1
+мультиплатформенное решение,1
+навыки разрешения спорных ситуаций,1
+"написание тестов (quick, nimble)",1
+наставничество,1
+настройка ci/cd,1
+настройка по,1
+настройка сетевых подключений,1
+"не конфликтность, ответственность, аналитический склад ума",1
+образованность,1
+обучаемость,1
+обучение,1
+обучение сотрудников,1
+ооп и структуры данных,1
+опп,1
+опыт написания unit-тестов,1
+"опыт работы с android studio, gradle",1
+опыт работы с git и gradle,1
+"опыт работы с livedata, retrofit, coururin, okhttp, hilt, room, sql",1
+опыт работы с mvvm-паттерн,1
+опыт работы с асинхронным кодом,1
+опыт работы с системами контроля версий git,1
+опыт разработки ios-приложений в команде разработчиков от 5 лет,1
+опыт разработки под ios будет преимуществом,1
+"опытный пользователь пк, знание ms office",1
+организационная осведомленность,1
+организация учебного процесса,1
+ответственное отношение к работе,1
+оценка задач,1
+планирование карьеры,1
+понимание принципов di и протоколо-ориентированного программирования,1
+понимание принципов работы мобильного приложения,1
+построение алгоритмов,1
+преподавание,1
+пример реализованного приложения,1
+программист мобильных приложений,1
+программная верстка,1
+программный код,1
+пунктуальность,1
+работа в графических редакторах,1
+работа с большим объемом информации,1
+работа с макетами,1
+работать в команде,1
+разговорный английский,1
+разрабатывать приложения,1
+разработка cms,1
+разработка ui,1
+разработка web-приложений,1
+разработка концепции,1
+разработка мобильных приложений под android,1
+разработка под ios,1
+разработчик мобильных приложений,1
+распространенные шаблоны проектирования,1
+реляционные базы данных,1
+робототехника,1
+ручное тестирование,1
+сustomview,1
+сапр,1
+сборка приложения,1
+сетевые протоколы,1
+системная разработка,1
+системное мышление,1
+сложные анимации и ux сюжеты,1
+соблюдение сроков,1
+средний middle,1
+структуры данных,1
+субд ms sql server,1
+творческое мышление,1
+точность и внимательность к деталям,1
+улаживание конфликтов,1
+умение анализировать,1
+умение и желание быстро обучаться,1
+умение находить общий язык,1
+умение писать программы,1
+"умение писать чистый, модульный и легко поддерживаемый код.",1
+умение принимать решения,1
+умение читать чужой код,1
+управление разработкой,1
+фитнес,1
+фронтенд,1
+функциональное программирование,1
+чтение документации на английском языке без переводчиков,1
+широкий кругозор,1
+эффективное принятие решений,1
+язык программирования java,1
+яндекс.метрика,1
+• swiftui,1
+• uikit,1

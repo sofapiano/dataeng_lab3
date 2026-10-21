@@ -68,6 +68,68 @@ python scripts/check_duckdb_s3.py
 
 Транскрипт: `reports/output/check_duckdb_s3.txt`.
 
+## Этапы 3–4: подсчёт навыков двумя способами и сверка
+
+**Вариант 9.** Правило отбора и нормализация навыков заданы один раз в
+`src/common/variant.py`; и MapReduce, и DuckDB используют именно эти
+константы (для SQL предикат генерирует `filter_predicate_sql`), поэтому
+расхождение результатов из-за разного фильтра невозможно.
+
+### 3а. Собственный MapReduce поверх S3
+
+```bash
+python src/mapreduce/main.py
+```
+
+`src/mapreduce/`:
+
+- `reader.py` — чтение объекта **байтовыми диапазонами** (`GetObject` +
+  `Range`), границы чанков выравниваются по `\n`. Чанк владеет строками,
+  которые начинаются в его диапазоне; хвост последней строки дочитывается
+  отдельным Range-запросом. Тесты границ: `python tests/test_reader.py`;
+- `mapper.py` — Map + Shuffle: CSV → фильтр варианта → нормализация навыков →
+  ключи для k = 1, 2, 3 → разбиение по редьюсерам через `zlib.crc32`
+  (встроенный `hash()` рандомизируется между процессами и не годится);
+- `reducer.py` — Reduce: суммирование частичных частот;
+- `main.py` — CLI, повтор упавших чанков, запись результатов.
+
+Результаты пишутся в `data/results/mr/` и в бакет:
+`results/mr/skills_k1.csv`, `skills_k2.csv`, `skills_k3.csv`,
+`skill_histogram.csv`, `summary.csv`.
+
+Отказоустойчивость (маппер убивает свой процесс на первой попытке чанка,
+драйвер пересоздаёт пул и повторяет чанк):
+
+```bash
+python src/mapreduce/main.py --fail-chunk 6 --fail-mode exit \
+    --tag _failure --no-upload --out reports/output/stage3_mapreduce_failure.txt
+```
+
+Итог на этом датасете: 4 176 вакансий варианта, 3 093 с навыками;
+1 138 навыков, 14 089 пар, 73 431 тройка.
+
+### 3б. DuckDB по тем же данным
+
+```bash
+python scripts/run_duckdb.py
+```
+
+SQL: `src/sql/skills_counts.sql` — `read_csv` прямо из `s3://hh-lake/...`,
+`unnest(string_split(...))` + `lower(trim(...))` + `DISTINCT (vacancy_id, skill)`,
+пары и тройки — self-join с `a.skill < b.skill[< c.skill]`.
+Результаты: `data/results/duckdb/` и `results/duckdb/` в бакете.
+
+### 4. Верификация
+
+```bash
+python scripts/verify.py
+```
+
+Скачивает оба набора результатов **из хранилища** и сверяет их
+`FULL OUTER JOIN` по каждому k (`src/sql/verify_mapreduce_vs_duckdb.sql`).
+Ожидаемый и фактический результат — 0 ключей только в MapReduce,
+0 только в DuckDB, 0 расхождений частот.
+
 ## Конфигурация
 
 `configs/pipeline.env` (создаётся из `configs/pipeline.example.env`) хранит
@@ -76,8 +138,7 @@ endpoint, ключи, имя бакета, ключи объектов и пар
 
 ## Ограничения памяти
 
-На машине 8 ГБ RAM, из которых свободно меньше 1 ГБ. DuckDB по умолчанию
-резервирует ~80% физической памяти и падает на старте с
+DuckDB по умолчанию резервирует ~80% физической памяти и падает на старте с
 `Memory allocation still failed`. Поэтому лимиты заданы явно в
 `configs/pipeline.env`:
 

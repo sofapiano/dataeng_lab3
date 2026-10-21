@@ -5,7 +5,7 @@ __pycache__/
 
 # Data artifacts
 *.parquet
-*.csv
+data/raw/*.csv
 *.jsonl
 *.duckdb
 *.db
