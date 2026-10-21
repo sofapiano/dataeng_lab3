@@ -1,0 +1,31 @@
+region_rank,area,skill1,skill2,skill3,n
+1,Москва,android,android sdk,kotlin,159
+1,Москва,android,java,kotlin,146
+1,Москва,android sdk,java,kotlin,116
+1,Москва,android,android sdk,java,100
+1,Москва,android,git,kotlin,77
+1,Москва,git,java,kotlin,76
+1,Москва,android,kotlin,mvvm,69
+1,Москва,ios,swift,uikit,64
+1,Москва,git,ios,swift,63
+1,Москва,android sdk,git,java,59
+2,Санкт-Петербург,android,java,kotlin,71
+2,Санкт-Петербург,android,android sdk,kotlin,49
+2,Санкт-Петербург,android sdk,java,kotlin,35
+2,Санкт-Петербург,android,android sdk,java,31
+2,Санкт-Петербург,android,git,kotlin,29
+2,Санкт-Петербург,android,flutter,ios,28
+2,Санкт-Петербург,ios,swift,ооп,27
+2,Санкт-Петербург,ios,objective-c,swift,26
+2,Санкт-Петербург,git,java,kotlin,25
+2,Санкт-Петербург,android,kotlin,mvvm,24
+3,Новосибирск,android,git,kotlin,11
+3,Новосибирск,android,java,kotlin,11
+3,Новосибирск,android,android sdk,kotlin,10
+3,Новосибирск,android,kotlin,mvvm,10
+3,Новосибирск,git,kotlin,solid,10
+3,Новосибирск,ios,objective-c,swift,10
+3,Новосибирск,android sdk,java,kotlin,9
+3,Новосибирск,git,java,kotlin,8
+3,Новосибирск,android,android sdk,git,7
+3,Новосибирск,android,git,java,7

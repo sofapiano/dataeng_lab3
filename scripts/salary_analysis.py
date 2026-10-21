@@ -24,19 +24,17 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 
 import duckdb  # noqa: E402
 
+from common import salary as salary_model  # noqa: E402
 from common.config import load_settings  # noqa: E402
-from common.duckdb import connect, render  # noqa: E402
-from common.reporting import Transcript  # noqa: E402
+from common.duckdb import connect, render, run_statements  # noqa: E402
+from common.reporting import Transcript, human, money, pct  # noqa: E402
 from common.s3 import make_s3_client  # noqa: E402
 from common.variant import VARIANT, filter_predicate_sql  # noqa: E402
 
 SQL_FILE = REPO_ROOT / "src" / "sql" / "salary_analysis.sql"
 
-#: Коэффициент перевода gross -> net (НДФЛ 13 %).
-GROSS_TO_NET = 0.87
-#: Границы допустимой зарплаты, руб./мес: отсекаются явные выбросы (100, 1500).
-SALARY_MIN = 10_000
-SALARY_MAX = 1_000_000
+#: Общая с этапом 6 часть SQL: vacancy, vacancy_skill, skill_pop.
+MODEL_FILE = REPO_ROOT / "src" / "sql" / "vacancy_model.sql"
 
 #: Лимит памяти DuckDB для этого этапа. Рабочее множество крошечное (4 тыс.
 #: вакансий), а вот CSV-скан по объекту в 808 МБ буферизуется целиком — на
@@ -47,39 +45,6 @@ MEMORY_LIMIT = "256MB"
 #: Один поток: параллельный CSV-скан по httpfs держит в памяти буфер на
 #: каждый поток, а на этой машине памяти мало.
 THREADS = 1
-
-
-def human(n: float) -> str:
-    for unit in ("Б", "КБ", "МБ", "ГБ"):
-        if abs(n) < 1024:
-            return f"{n:.1f} {unit}" if unit != "Б" else f"{int(n)} Б"
-        n /= 1024
-    return f"{n:.1f} ТБ"
-
-
-def money(value: float | None) -> str:
-    """Денежное значение с пробелами-разделителями тысяч."""
-    if value is None:
-        return "-"
-    return f"{value:,.0f}".replace(",", " ")
-
-
-def pct(value: float | None) -> str:
-    if value is None:
-        return "-"
-    return f"{value:+.1f}%"
-
-
-def print_table(t: Transcript, headers: list[str], rows: list[list[str]]) -> None:
-    """Печатает таблицу с выравниванием колонок по ширине содержимого."""
-    widths = [len(h) for h in headers]
-    for row in rows:
-        for i, cell in enumerate(row):
-            widths[i] = max(widths[i], len(str(cell)))
-    t.log("  " + "  ".join(h.ljust(widths[i]) for i, h in enumerate(headers)))
-    t.log("  " + "  ".join("-" * widths[i] for i in range(len(headers))))
-    for row in rows:
-        t.log("  " + "  ".join(str(cell).ljust(widths[i]) for i, cell in enumerate(row)))
 
 
 def effect_rows(rows: list[tuple], width: int) -> list[list[str]]:
@@ -159,16 +124,15 @@ def main(argv: list[str] | None = None) -> int:
     sql_values = {
         "INPUT_URI": settings.input_uri,
         "VARIANT_PREDICATE": filter_predicate_sql("v"),
-        "GROSS_TO_NET": str(GROSS_TO_NET),
-        "SALARY_MIN": str(SALARY_MIN),
-        "SALARY_MAX": str(SALARY_MAX),
+        **salary_model.sql_values(),
         "MIN_PAIR_N": str(args.min_pair_n),
         "MIN_TRIPLE_N": str(args.min_triple_n),
         "MIN_BASE_N": str(args.min_base_n),
         "TOP": str(args.top),
         **{name: path.as_posix() for name, path in out_paths.items()},
     }
-    sql = render(SQL_FILE.read_text(encoding="utf-8"), sql_values)
+    model = MODEL_FILE.read_text(encoding="utf-8")
+    sql = render(model + "\n" + SQL_FILE.read_text(encoding="utf-8"), sql_values)
 
     started_all = time.perf_counter()
     with Transcript(transcript) as t:
@@ -178,12 +142,14 @@ def main(argv: list[str] | None = None) -> int:
         t.log(f"  правило      : {filter_predicate_sql('v')}")
         t.log(f"  объект       : {settings.input_uri}")
         t.log(f"  SQL          : {SQL_FILE.relative_to(REPO_ROOT)}")
+        t.log(f"  модель       : {MODEL_FILE.relative_to(REPO_ROOT)} (общая с этапом 6)")
         t.log(f"  DuckDB       : {duckdb.__version__}, "
               f"memory_limit={args.memory_limit}, threads={args.threads}")
         t.log()
         t.log("  Модель зарплаты:")
-        t.log("    * только RUR; gross -> net (x0.87); середина вилки, иначе единственная граница;")
-        t.log(f"    * отбрасываются выбросы вне [{SALARY_MIN:,} .. {SALARY_MAX:,}] руб./мес".replace(",", " "))
+        t.log(f"    * только RUR; gross -> net (x{salary_model.GROSS_TO_NET}); "
+              "середина вилки, иначе единственная граница;")
+        t.log(f"    * отбрасываются выбросы вне [{salary_model.SALARY_MIN:,} .. {salary_model.SALARY_MAX:,}] руб./мес".replace(",", " "))
         t.log("  Методика прибавки:")
         t.log("    базовый навык комбинации — самый популярный её участник (во всём варианте);")
         t.log("    прибавка = медиана(комбинация) - медиана(базовый навык);")
@@ -193,21 +159,12 @@ def main(argv: list[str] | None = None) -> int:
 
         con = connect(settings, memory_limit=args.memory_limit, threads=args.threads)
         t.rule("1. Выполнение SQL")
-        for i, statement in enumerate(con.extract_statements(sql), 1):
-            query = statement.query
-            first_line = next(
-                (ln.strip() for ln in query.splitlines()
-                 if ln.strip() and not ln.strip().startswith("--")),
-                "",
-            )
-            started = time.perf_counter()
-            con.execute(query)
-            t.log(f"  [{i:02d}] {time.perf_counter() - started:6.2f} с  {first_line[:88]}")
+        run_statements(con, sql, lambda i, sec, first: t.log(
+            f"  [{i:02d}] {sec:6.2f} с  {first[:88]}"))
         t.log()
 
         t.rule("2. Воронка данных")
-        print_table(
-            t,
+        t.table(
             ["Шаг", "Вакансий"],
             [[step, str(n)] for _, step, n in con.execute(
                 "SELECT step_order, step, n FROM summary ORDER BY step_order").fetchall()],
@@ -248,7 +205,7 @@ def main(argv: list[str] | None = None) -> int:
             ).fetchall()[: args.top]
         ]
         t.log("  ТОП по медиане:")
-        print_table(t, skill_headers, skill_rows)
+        t.table(skill_headers, skill_rows)
         t.log()
         skill_rows = [
             [skill, str(n_all), str(n_sal), money(med), money(delta), pct(delta_pct),
@@ -262,7 +219,7 @@ def main(argv: list[str] | None = None) -> int:
             ).fetchall()[: args.top]
         ]
         t.log("  НИЗ по медиане:")
-        print_table(t, skill_headers, skill_rows)
+        t.table(skill_headers, skill_rows)
         t.log()
 
         effect_headers = ["Комбинация", "n", "Медиана комб.", "Базовый навык",
@@ -277,7 +234,7 @@ def main(argv: list[str] | None = None) -> int:
             rows = con.execute(
                 f"SELECT * FROM {table} ORDER BY delta {order} LIMIT {args.top}"
             ).fetchall()
-            print_table(t, effect_headers, effect_rows(rows, width))
+            t.table(effect_headers, effect_rows(rows, width))
             t.log()
 
         t.rule("9. Наблюдения по числам выше")

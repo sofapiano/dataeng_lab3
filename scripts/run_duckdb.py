@@ -20,20 +20,12 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 import duckdb  # noqa: E402
 
 from common.config import load_settings  # noqa: E402
-from common.duckdb import connect, render  # noqa: E402
-from common.reporting import Transcript  # noqa: E402
+from common.duckdb import connect, render, run_statements  # noqa: E402
+from common.reporting import Transcript, human  # noqa: E402
 from common.s3 import make_s3_client  # noqa: E402
 from common.variant import VARIANT, filter_predicate_sql  # noqa: E402
 
 SQL_FILE = REPO_ROOT / "src" / "sql" / "skills_counts.sql"
-
-
-def human(n: float) -> str:
-    for unit in ("Б", "КБ", "МБ", "ГБ"):
-        if abs(n) < 1024:
-            return f"{n:.1f} {unit}" if unit != "Б" else f"{int(n)} Б"
-        n /= 1024
-    return f"{n:.1f} ТБ"
 
 
 def main() -> int:
@@ -77,19 +69,9 @@ def main() -> int:
         t.log()
 
         # duckdb.extract_statements корректно режет и по ';' внутри комментариев.
-        statements = [stmt.query for stmt in con.extract_statements(sql)]
-
         t.rule("1. Выполнение SQL (по инструкциям)")
-        for i, statement in enumerate(statements, 1):
-            first_line = next(
-                (ln.strip() for ln in statement.splitlines()
-                 if ln.strip() and not ln.strip().startswith("--")),
-                "",
-            )
-            started = time.perf_counter()
-            con.execute(statement)
-            elapsed = time.perf_counter() - started
-            t.log(f"  [{i:02d}] {elapsed:6.2f} с  {first_line[:90]}")
+        run_statements(con, sql, lambda i, sec, first: t.log(
+            f"  [{i:02d}] {sec:6.2f} с  {first[:90]}"))
         t.log(f"  всего SQL: {time.perf_counter() - started_all:.1f} с")
         t.log()
 

@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import os
+import time
 
 # DuckDB тянет OpenBLAS, который на старте резервирует буфер под каждый поток.
 # Из-за ограничений памяти переменная должна быть выставлена ДО
@@ -63,3 +64,22 @@ def render(template: str, values: dict[str, str]) -> str:
     if missing:
         raise ValueError(f"не подставлены плейсхолдеры: {missing}")
     return sql
+
+
+def run_statements(con: duckdb.DuckDBPyConnection, sql: str, on_statement=None) -> None:
+    """Выполняет скрипт по инструкциям, сообщая о каждой через on_statement.
+
+    on_statement(номер, секунды, первая содержательная строка инструкции) —
+    обычно это печать строки в транскрипт отчёта.
+    """
+    for i, statement in enumerate(con.extract_statements(sql), 1):
+        query = statement.query
+        first_line = next(
+            (ln.strip() for ln in query.splitlines()
+             if ln.strip() and not ln.strip().startswith("--")),
+            "",
+        )
+        started = time.perf_counter()
+        con.execute(query)
+        if on_statement is not None:
+            on_statement(i, time.perf_counter() - started, first_line)
